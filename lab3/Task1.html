@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Задание 1</title>
+</head>
+
+<body>
+  <script>
+
+    let n = prompt("Введите число, с которого начнется обратный отсчет:", "");
+    counter(n);
+    console.log(createCounter(n));
+
+    // Функция counter для вывода обратного отсчета от n до 0
+    function counter(n) 
+    {
+      let currentNumber = n;
+      let interval = setInterval(() => 
+      {
+        console.log(currentNumber);
+        currentNumber--;
+        if (currentNumber < 0) 
+        {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+    function createCounter(n) 
+    {
+      let interval;
+      let currentNumber = n;
+      return {
+        start: function () 
+        {
+          currentNumber = currentNumber === 0
+            ? n
+            : currentNumber;
+          interval = setInterval(() => 
+          {
+            console.log(currentNumber);
+            currentNumber--;
+            if (currentNumber < 0) 
+            {
+              clearInterval(interval);
+            }
+          }, 1000);
+        },
+        pause: function () 
+        {
+          clearInterval(interval);
+          interval = null;
+        },
+        stop: function () 
+        {
+          clearInterval(interval);
+          currentNumber = n;
+          interval = null;
+        },
+      };
+    }
+  </script>
+</body>
+
+</html>
